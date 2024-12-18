@@ -1,0 +1,11 @@
+:root{
+    --bgColor: #f5f5f5;
+    --bgButton: #4CAF50;
+    --bgButtonHover: #45a049;
+    --erroColor: red;
+    --linkColor: blue;
+    --tituloColor: #333;
+    --shadowColor: rgba(0, 0, 0, 0.1);
+    --txtColor: white;
+    --borderColor: #ddd;
+}

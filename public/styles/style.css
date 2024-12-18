@@ -1,3 +1,5 @@
+@import url(./cores.css);
+
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -5,36 +7,40 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background: #f5f5f5;
+    background: var(--bgColor);
+  }
+
+  .hidden {
+    display: none;
   }
   
   .login-container {
-    background: #ffffff;
+    background: var(--bgColor);
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px var(--shadowColor);
     width: 300px;
     text-align: center;
   }
   
   h2 {
     margin-bottom: 20px;
-    color: #333;
+    color: var(--tituloColor);
   }
   
   input {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #ddd;
+    border: 1px solid var(--borderColor);
     border-radius: 4px;
   }
   
   button {
     width: 100%;
     padding: 10px;
-    background: #4CAF50;
-    color: white;
+    background: var(--bgButton);
+    color: var(--txtColor);
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -42,11 +48,21 @@ body {
   }
   
   button:hover {
-    background: #45a049;
+    background: var(--bgButtonHover);
+
   }
-  
+
   .error {
-    color: red;
-    font-size: 14px;
+    color: var(--erroColor);
+    font-size: 0.9rem;
   }
   
+  a {
+    color: var(--linkColor);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  a:hover {
+    text-decoration: none;
+  }
