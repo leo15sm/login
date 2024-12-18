@@ -1,35 +1,10 @@
-import {
-  initializeApp
-} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
+import { auth } from './firebase.js';
+import { 
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
   updatePassword,
-  reauthenticateWithCredential, 
-  EmailAuthProvider 
-} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
-
-// Configuração do Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyBeYrRq60dDQJC3mK7BfvNJXKjfujkIrXw",
-  authDomain: "login-leosm15.firebaseapp.com",
-  projectId: "login-leosm15",
-  storageBucket: "login-leosm15.firebasestorage.app",
-  messagingSenderId: "812206259769",
-  appId: "1:812206259769:web:68e319a4abb557f12257e8",
-  measurementId: "G-1Z4DP8SKBQ"
-};
-
-// Inicializa o Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-// Inicializa a tela de login ao carregar
-document.addEventListener("DOMContentLoaded", () => {
-  showScreen(loginScreen); // Exibe a tela de login por padrão
-});
+  reauthenticateWithCredential
+} from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js';
 
 // Referências para elementos das telas
 const loginScreen = document.getElementById("loginScreen");
@@ -77,10 +52,10 @@ backToLoginFromRecover.addEventListener("click", (e) => {
   showScreen(loginScreen);
 });
 
-backToRecoverFromChange.addEventListener("click", (e) => {
-  e.preventDefault();
-  showScreen(recoverScreen);
-});
+// backToRecoverFromChange.addEventListener("click", (e) => {
+//   e.preventDefault();
+//   showScreen(recoverScreen);
+// });
 
 /// Função de login
 function loginUser(email, password) {
@@ -89,8 +64,9 @@ function loginUser(email, password) {
       // Usuário logado com sucesso
       const user = userCredential.user;
       console.log("Login bem-sucedido: ", user);
+
       // Aqui você pode redirecionar o usuário ou mostrar a tela principal
-      showScreen("loginScreen"); // ou outra tela conforme seu fluxo
+      showScreen(loginScreen); // ou outra tela conforme seu fluxo
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -116,7 +92,7 @@ function registerUser(email, password) {
       console.log("Cadastro bem-sucedido: ", user);
       
       // Após cadastro, redireciona para a tela de login
-      showScreen("loginScreen");
+      showScreen(loginScreen);
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -180,7 +156,7 @@ function changePassword(email, newPassword, currentPassword) {
         .then(() => {
           console.log("Senha alterada com sucesso");
           // Redirecionar para o login ou mostrar mensagem de sucesso
-          showScreen("loginScreen");
+          showScreen(loginScreen);
         })
         .catch((error) => {
           const errorCode = error.code;
