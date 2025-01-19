@@ -3,10 +3,17 @@ import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
   updatePassword,
-  reauthenticateWithCredential
+  reauthenticateWithCredential,
+  createUserWithEmailAndPassword, 
+  setPersistence, 
+  browserLocalPersistence, 
+  browserSessionPersistence,
+  onAuthStateChanged,
+  signOut,
 } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js';
 
 // Referências para elementos das telas
+const mainScreen = document.getElementById("mainScreen");
 const loginScreen = document.getElementById("loginScreen");
 const registerScreen = document.getElementById("registerScreen");
 const recoverScreen = document.getElementById("recoverScreen");
@@ -17,7 +24,6 @@ const goToRegister = document.getElementById("goToRegister");
 const goToRecover = document.getElementById("goToRecover");
 const backToLoginFromRegister = document.getElementById("backToLoginFromRegister");
 const backToLoginFromRecover = document.getElementById("backToLoginFromRecover");
-const backToRecoverFromChange = document.getElementById("backToRecoverFromChange");
 
 // Função para alternar telas
 function showScreen(screenToShow) {
@@ -26,6 +32,7 @@ function showScreen(screenToShow) {
   registerScreen.classList.add("hidden");
   recoverScreen.classList.add("hidden");
   changeScreen.classList.add("hidden");
+  mainScreen.classList.add("hidden");
 
   // Mostra a tela solicitada
   screenToShow.classList.remove("hidden");
@@ -52,21 +59,24 @@ backToLoginFromRecover.addEventListener("click", (e) => {
   showScreen(loginScreen);
 });
 
-// backToRecoverFromChange.addEventListener("click", (e) => {
-//   e.preventDefault();
-//   showScreen(recoverScreen);
-// });
 
 /// Função de login
-function loginUser(email, password) {
-  signInWithEmailAndPassword(auth, email, password)
+function loginUser(email, password, manterConectado) {
+   // Verifica a persistência desejada
+   const persistencia = manterConectado ? browserLocalPersistence : browserSessionPersistence;
+
+   // Define a persistência da autenticação
+   setPersistence(auth, persistencia)
+     .then(() => {
+       return   signInWithEmailAndPassword(auth, email, password)
+     })
     .then((userCredential) => {
       // Usuário logado com sucesso
       const user = userCredential.user;
       console.log("Login bem-sucedido: ", user);
 
       // Aqui você pode redirecionar o usuário ou mostrar a tela principal
-      showScreen(loginScreen); // ou outra tela conforme seu fluxo
+      showScreen(mainScreen); // ou outra tela conforme seu fluxo
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -91,8 +101,17 @@ function registerUser(email, password) {
       const user = userCredential.user;
       console.log("Cadastro bem-sucedido: ", user);
       
-      // Após cadastro, redireciona para a tela de login
-      showScreen(loginScreen);
+      // Exibe a mensagem de sucesso
+      const successMessage = document.getElementById('successMessage');
+      successMessage.style.display = 'block'; // Exibe a mensagem
+      // Aguarda 3 segundos antes de redirecionar para o login
+      setTimeout(() => {
+        // Oculta a mensagem de sucesso
+        successMessage.style.display = 'none';
+
+        // Redireciona para a tela de login (ou qualquer outra função de navegação)
+        showScreen(loginScreen); 
+      }, 3000); // 3 segundos de delay para o usuário ver a mensagem
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -185,4 +204,37 @@ document.getElementById("changePasswordForm").addEventListener("submit", (e) => 
   }
 
   changePassword(email, newPassword, currentPassword);
+});
+
+// Verificar se o usuário já está autenticado ao carregar a página
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    console.log("Usuário autenticado:", user);
+    // Redirecionar para a tela principal ou outra página
+    showScreen(mainScreen); // Ou a tela desejada
+  } else {
+    console.log("Usuário não autenticado");
+    showScreen(loginScreen); // Exibe a tela de login caso não esteja autenticado
+  }
+});
+
+// Função para logout
+function logoutUser() {
+  signOut(auth)
+    .then(() => {
+      console.log("Usuário deslogado com sucesso");
+      // Redireciona para a tela de login após o logout
+      showScreen(loginScreen);
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.error("Erro ao deslogar: ", errorMessage);
+    });
+}
+
+// Adicionar evento de clique no botão de logout
+document.getElementById("logoutButton").addEventListener("click", (e) => {
+  e.preventDefault();
+  logoutUser();
 });

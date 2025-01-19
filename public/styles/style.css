@@ -1,68 +1,78 @@
 @import url(./cores.css);
 
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background: var(--bgColor);
-  }
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: var(--bgColor);
+}
 
-  .hidden {
-    display: none;
-  }
+.hidden {
+  display: none;
+}
   
-  .login-container {
-    background: var(--bgColor);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px var(--shadowColor);
-    width: 300px;
-    text-align: center;
-  }
+.login-container {
+  background: var(--bgColor);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px var(--shadowColor);
+  width: 300px;
+  text-align: center;
+}
   
-  h2 {
-    margin-bottom: 20px;
-    color: var(--tituloColor);
-  }
+h2 {
+  margin-bottom: 20px;
+  color: var(--tituloColor);
+}
   
-  input {
-    width: 90%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid var(--borderColor);
-    border-radius: 4px;
-  }
+input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid var(--borderColor);
+  border-radius: 4px;
+}
   
-  button {
-    width: 100%;
-    padding: 10px;
-    background: var(--bgButton);
-    color: var(--txtColor);
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-  }
+button {
+  width: 100%;
+  padding: 10px;
+  background: var(--bgButton);
+  color: var(--txtColor);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
   
-  button:hover {
-    background: var(--bgButtonHover);
+button:hover {
+  background: var(--bgButtonHover);
+}
 
-  }
+.error {
+  color: var(--erroColor);
+  font-size: 0.9rem;
+}
+  
+a {
+  color: var(--linkColor);
+  text-decoration: underline;
+  cursor: pointer;
+}
+  
+a:hover {
+  text-decoration: none;
+}
 
-  .error {
-    color: var(--erroColor);
-    font-size: 0.9rem;
-  }
-  
-  a {
-    color: var(--linkColor);
-    text-decoration: underline;
-    cursor: pointer;
-  }
-  
-  a:hover {
-    text-decoration: none;
-  }
+/* Estilo para a checkbox "manter conectado" */
+#loginForm label {
+  font-size: 14px;
+  color: #333;
+}
+
+#loginForm input[type="checkbox"] {
+  margin-right: 8px;
+  cursor: pointer;
+}
