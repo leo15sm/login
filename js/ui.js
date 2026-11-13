@@ -20,13 +20,31 @@ export function explicar(erro) {
   return erros[erro.code] || (erro.code ? 'Não foi possível concluir. Código: ' + erro.code : erro.message);
 }
 export function formulario(acao) {
-  document.querySelector('form').addEventListener('submit', async evento => {
+  const form = document.querySelector("form");
+
+  if (!form) {
+    return;
+  }
+
+  form.addEventListener("submit", async (evento) => {
     evento.preventDefault();
-    const botao = evento.currentTarget.querySelector('button');
+
+    const botao = form.querySelector('button[type="submit"]');
+
+    if (!botao || botao.disabled) {
+      return;
+    }
+
     botao.disabled = true;
-    mensagem('Aguarde…');
-    try { await acao(new FormData(evento.currentTarget)); }
-    catch (erro) { mensagem(explicar(erro), true); }
-    finally { botao.disabled = false; }
+    mensagem("Aguarde…");
+
+    try {
+      const dados = new FormData(form);
+      await acao(dados);
+    } catch (erro) {
+      mensagem(explicar(erro), true);
+    } finally {
+      botao.disabled = false;
+    }
   });
 }

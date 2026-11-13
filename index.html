@@ -15,9 +15,40 @@
             <label>E-mail
                 <input name="email" type="email" autocomplete="email" required>
             </label>
-            <label>Senha
-                <input name="senha" type="password" autocomplete="current-password" required>
-            </label>
+            <div class="campo-senha">
+                <label for="senha">Senha</label>
+
+                <div class="entrada-senha">
+                    <input
+                    id="senha"
+                    name="senha"
+                    type="password"
+                    autocomplete="current-password"
+                    required
+                    >
+
+                    <button
+                    type="button"
+                    class="alternar-senha"
+                    aria-controls="senha"
+                    aria-label="Mostrar senha"
+                    aria-pressed="false"
+                    title="Mostrar senha"
+                    >
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        aria-hidden="true"
+                    >
+                        <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                        <path class="risco" d="m3 3 18 18"/>
+                    </svg>
+                    </button>
+                </div>
+            </div>
             <button type="submit">Entrar</button>
         </form>
         <p id="mensagem" role="status" aria-live="polite"></p>
@@ -29,6 +60,7 @@
         <noscript>Ative o JavaScript para utilizar o login.</noscript>
     </main>
     <script type="module" src="js/login.js"></script>
+    <script type="module" src="js/mostrar-senha.js"></script>
 </body>
 </html>
 

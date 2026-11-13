@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="pt-BR">
-     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Criar conta | Login</title>
-        <link rel="stylesheet" href="css/styles.css">
-    </head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Criar conta | Login</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
 <body>
     <main class="card">
         <span class="marca">LOGIN / BASE</span>
@@ -18,9 +18,79 @@
             <label>E-mail
                 <input name="email" type="email" autocomplete="email" required>
             </label>
-            <label>Senha
-                <input name="senha" type="password" autocomplete="new-password" minlength="8" required>
-            </label>
+            <div class="campo-senha">
+                <label for="senha">Senha</label>
+
+                <div class="entrada-senha">
+                    <input
+                    id="senha"
+                    name="senha"
+                    type="password"
+                    autocomplete="new-password"
+                    minlength="8"
+                    required
+                    >
+
+                    <button
+                    type="button"
+                    class="alternar-senha"
+                    aria-controls="senha"
+                    aria-label="Mostrar senha"
+                    aria-pressed="false"
+                    title="Mostrar senha"
+                    >
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        aria-hidden="true"
+                    >
+                        <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                        <path class="risco" d="m3 3 18 18"/>
+                    </svg>
+                    </button>
+                </div>
+                </div>
+
+                <small>Use pelo menos 8 caracteres.</small>
+
+                <div class="campo-senha">
+                <label for="confirmacao">Confirmar senha</label>
+
+                <div class="entrada-senha">
+                    <input
+                    id="confirmacao"
+                    name="confirmacao"
+                    type="password"
+                    autocomplete="new-password"
+                    minlength="8"
+                    required
+                    >
+
+                    <button
+                    type="button"
+                    class="alternar-senha"
+                    aria-controls="confirmacao"
+                    aria-label="Mostrar confirmação de senha"
+                    aria-pressed="false"
+                    title="Mostrar confirmação de senha"
+                    >
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        aria-hidden="true"
+                    >
+                        <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                        <path class="risco" d="m3 3 18 18"/>
+                    </svg>
+                    </button>
+                </div>
+            </div>
             <small>Use pelo menos 8 caracteres e siga a política do projeto.</small>
             <label>Confirmar senha
                 <input name="confirmacao" type="password" autocomplete="new-password" minlength="8" required>
@@ -35,6 +105,8 @@
         </nav>
         <noscript>Ative o JavaScript para utilizar o login.</noscript>
     </main>
-    <script type="module" src="js/cadastro.js"></script>
+    <script type="module" src="./js/login.js"></script>
+    <script type="module" src="./js/mostrar-senha.js"></script>
 </body>
 </html>
+
