@@ -1,0 +1,22 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /usuarios/{uid} {
+      function dono() { return request.auth != null && request.auth.uid == uid; }
+      function valido() {
+        return request.resource.data.keys().hasAll(['nome', 'criadoEm', 'atualizadoEm'])
+          && request.resource.data.keys().hasOnly(['nome', 'criadoEm', 'atualizadoEm'])
+          && request.resource.data.nome is string
+          && request.resource.data.nome.size() >= 2
+          && request.resource.data.nome.size() <= 100;
+      }
+      allow get: if dono();
+      allow create: if dono() && valido()
+        && request.resource.data.criadoEm == request.time
+        && request.resource.data.atualizadoEm == request.time;
+      allow update: if dono() && valido()
+        && request.resource.data.criadoEm == resource.data.criadoEm
+        && request.resource.data.atualizadoEm == request.time;
+    }
+  }
+}

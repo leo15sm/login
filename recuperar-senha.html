@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Recuperar senha | Login</title>
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+<body>
+    <main class="card">
+        <span class="marca">LOGIN / BASE</span>
+        <h1>Recuperar senha</h1>
+        <p>Enviaremos as instruções para seu e-mail.</p>
+        <form>
+            <label>E-mail
+                <input name="email" type="email" autocomplete="email" required>
+            </label>
+            <button type="submit">Enviar</button>
+        </form>
+        <p id="mensagem" role="status" aria-live="polite"></p>
+        <nav aria-label="Acesso">
+            <a href="index.html">Entrar</a>
+            <a href="cadastro.html">Criar conta</a>
+            <a href="recuperar-senha.html">Esqueci a senha</a>
+        </nav>
+        <noscript>Ative o JavaScript para utilizar o login.</noscript>
+    </main>
+    <script type="module" src="js/recuperar-senha.js"></script>
+</body>
+</html>

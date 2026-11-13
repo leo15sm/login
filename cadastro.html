@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Criar conta | Login</title>
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+<body>
+    <main class="card">
+        <span class="marca">LOGIN / BASE</span>
+        <h1>Criar conta</h1>
+        <p>Seu primeiro acesso começa aqui.</p>
+        <form>
+            <label>Nome
+                <input name="nome" autocomplete="name" minlength="2" maxlength="100" required>
+            </label>
+            <label>E-mail
+                <input name="email" type="email" autocomplete="email" required>
+            </label>
+            <label>Senha
+                <input name="senha" type="password" autocomplete="new-password" minlength="8" required>
+            </label>
+            <small>Use pelo menos 8 caracteres e siga a política do projeto.</small>
+            <label>Confirmar senha
+                <input name="confirmacao" type="password" autocomplete="new-password" minlength="8" required>
+            </label>
+            <button type="submit">Cadastrar</button>
+        </form>
+        <p id="mensagem" role="status" aria-live="polite"></p>
+        <nav aria-label="Acesso">
+            <a href="index.html">Entrar</a>
+            <a href="cadastro.html">Criar conta</a>
+            <a href="recuperar-senha.html">Esqueci a senha</a>
+        </nav>
+        <noscript>Ative o JavaScript para utilizar o login.</noscript>
+    </main>
+    <script type="module" src="js/cadastro.js"></script>
+</body>
+</html>
